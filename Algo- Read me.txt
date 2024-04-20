@@ -1,0 +1,67 @@
+INPUT
+USER ID, MOVIE ID, RATING		
+
+
+			(KEY, VALUE) PAIR
+		MAPPER
+			(USER ID, MOVIE ID:RATING)
+
+
+			
+		REDUCER		
+			(key value)USER ID, MOVIE ID1:RATING1  MOVIE ID2:RATING2 ...........
+
+CO OCCURANCE MATRIX GENERATOR:
+
+
+			MAPPER
+			(MOVIE1:MOVIE2,1),(MOVIE1:MOVIE3,0)..........
+			(MOVIE2:MOVIE1,1)(MOVIE2:MOVIE3,1)............
+			....
+
+			REDUCER:
+			The Reducer then takes these key-value pairs and sums up the number of times that
+ each pair of movies co-occurs in the users' movie rating histories to produce the final co-occurrence matrix.
+
+
+			(MOVIE1:MOVIE2:(no of times it pairs has watched it))
+
+NORMALIZATION:
+
+		MAPPER:
+				MOVIE1:MOVIE2,relations(co occurance matrix)
+
+		REDUCER:
+			MOVIE2:MOVIE1,normalization
+			similarity/probability
+
+
+MULTIPICATION:
+
+		The CooccurrenceMapper maps each line of the co-occurrence file to a key-value pair, 
+		where the key is the movieB and the value is the movieA=relation.
+
+		 COOCCURANCE MAPPER:      
+			MOVIE2,MOVIE1:Relation(no of times it pairs has watched it)
+
+
+ 		 RATING MAPPER:
+			The RatingMapper maps each line of the rating file to a key-value pair, 
+			where the key is the movie and the value is the user:rating.
+		
+			MOVIE2,USER ID:RATING
+
+		MULTIPICATION USER:
+			USER ID:MOVIE PAIR:RATING
+
+			OUTPUTS: THE SYSTEM PREDICTS WHAT MOVIES THE USER MIGHT WATCH AND GIVES A PERDICTED RATING
+			
+		
+
+
+			
+
+
+
+			
+					
